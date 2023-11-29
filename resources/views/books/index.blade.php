@@ -1,4 +1,6 @@
-@extends('template.app') @section('header')
+@extends('template.app') 
+
+@section('header')
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -22,8 +24,9 @@
     <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-@endsection @section('content')
+@endsection 
 
+@section('content')
 {{-- tabel aksi --}}
 <div class="container">
     <div class="card">
@@ -31,7 +34,7 @@
         <div class="d-grid gap-2 d-md-block" style="margin-left:20px">
             <a
                 class="btn btn-outline-light"
-                href="{{ route('tambah-buku.create') }}"
+                href="{{ route('books.create') }}"
                 role="button"
                 style="background-color: #000851">Tambah Buku</a>
             <div class="card-body">
@@ -55,12 +58,14 @@
                         <td>{{ $book->stock }}</td>
                         <td>{{ $book->pages }}</td>
                         <td><img
-                            src="{{ asset('/storage/posts/'.$book->cover) }}"
+                            src="{{ asset('/storage/books/'.$book->cover) }}"
                             class="rounded"
                             style="width: 150px"></td>
                         <td>
                             <a href="#" class="btn btn-primary">Edit</a>
-                            <a href="#" class="btn btn-danger">Hapus</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Hapus</button>
                         </tbody>
                         @empty
                         <div class="alert alert-danger">
@@ -72,58 +77,4 @@
             </div>
         </div>
     </section>
-    <!-- /.content -->
-    <script>
-        //message with toastr
-        @if(session() -> has('success'))
-
-        toastr.success('{{ session(' success ') }}', 'BERHASIL!');
-
-        @elseif(session() -> has('error'))
-
-        toastr.error('{{ session(' error ') }}', 'GAGAL!');
-
-        @endif
-        function socketOn() {
-        // Mengambil nilai dari input form untuk Socket On
-        const id = document.getElementById("idInput").value;
-        const key = document.getElementById("keyInput").value;
-        const ip = document.getElementById("ipInput").value;
-        // const dps = document.getElementById("dpsInput").value;
-        // const set = statusValues.includes("true"); // Mengubah menjadi boolean
-
-        // Data yang akan dikirimkan ke backend untuk Socket On
-        const socketFormData = {
-          id: id,
-          key: key,
-          ip: ip,
-          dps: 1,
-          set: true,
-        };
-        console.log(socketFormData);
-
-        // URL endpoint backend untuk Socket On
-        const socketApiUrl = "http://localhost:3001/books"; // Ganti dengan URL sesuai backend Anda
-
-        // Mengirim data ke backend untuk Socket On menggunakan Axios
-        axios
-          .post(socketApiUrl, socketFormData)
-          .then(function (response) {
-            // Handle respons dari backend untuk Socket On di sini jika diperlukan
-            console.log(
-              "Berhasil mengirim data ke backend untuk Socket On:",
-              response.data
-            );
-          })
-          .catch(function (error) {
-            // Handle error jika terjadi kesalahan saat mengirim data untuk Socket On
-            console.error(
-              "Error saat mengirim data ke backend untuk Socket On:",
-              error
-            );
-          });
-
-        $("#socketOnModal").modal("hide");
-      }
-    </script>
     @endsection

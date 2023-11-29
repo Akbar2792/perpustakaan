@@ -17,12 +17,12 @@ class bookController extends Controller
         $books = Book::all();
 
         //render view with posts
-        return view('admin.data-buku', compact('books'));
+        return view('books.index', compact('books'));
     }
 
     public function create(): View
     {
-        return view('admin.tambah-buku');
+        return view('books.create');
     }
 
     /**
@@ -59,6 +59,6 @@ class bookController extends Controller
         ]);
 
         //redirect to index
-        return redirect()->route('/data-buku')->with(['success' => 'Data Berhasil Disimpan!']);
+        return redirect()->route('books.index')->with(['success' => 'Data Berhasil Disimpan!']);
     }
 }

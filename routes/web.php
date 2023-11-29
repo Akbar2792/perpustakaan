@@ -17,8 +17,7 @@ Route::get('/', function () {
     return view('admin/katalog-buku');
 });
 
-// Route::resource('/data-buku', \App\Http\Controllers\bookController::class, ); 
-// Route::resource('/tambah-buku', \App\Http\Controllers\bookController::class, ); 
+Route::resource('/books', \App\Http\Controllers\bookController::class, ); 
 
 
 Route::get('/dashboard', function () {
@@ -48,11 +47,11 @@ Route::get('/data-administrator', function () {
 });
 
 
-Route::get('/data-buku', function () {
-    return view('admin/data-buku', [
-        'active'=> 'data-buku'
-    ]);
-});
+// Route::get('/data-buku', function () {
+//     return view('admin/data-buku', [
+//         'active'=> 'data-buku'
+//     ]);
+// });
 
 Route::get('/data-kategori', function () {
     return view('admin/data-kategori', [
@@ -72,11 +71,11 @@ Route::get('/tambah-administrator', function () {
     ]);
 });
 
-Route::get('/tambah-buku', function () {
-    return view('admin/tambah-buku', [
-        'active'=> 'tambah-buku'
-    ]);
-});
+// Route::get('/tambah-buku', function () {
+//     return view('admin/tambah-buku', [
+//         'active'=> 'tambah-buku'
+//     ]);
+// });
 
 Route::get('/tambah-kategori', function () {
     return view('admin/tambah-kategori', [

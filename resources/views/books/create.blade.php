@@ -1,6 +1,7 @@
-@extends('template.app') @section('header')
+@extends('template.app') 
+
+@section('header')
 <!-- Tempusdominus Bootstrap 4 -->
-<link rel="stylesheet" href="plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
 <!-- Content Header (Page header) -->
 <div class="content-header">
     <div class="container-fluid">
@@ -24,12 +25,14 @@
     <!-- /.container-fluid -->
 </div>
 <!-- /.content-header -->
-@endsection @section('content')
+@endsection 
+
+@section('content')
 <div class="container" style="">
     <div class="card">
         <h5 style="margin:20px ">TAMBAH DATA BUKU</h5>
         <form
-            action="{{ route('tambah-buku.store') }}"
+            action="{{ route('books.store') }}"
             method="POST"
             enctype="multipart/form-data">
 
@@ -155,6 +158,6 @@
             </div>
         </form>
         <script>
-          CKEDITOR.replace( 'content' );
-      </script>
+            CKEDITOR.replace( 'content' );
+        </script>
         @endsection
